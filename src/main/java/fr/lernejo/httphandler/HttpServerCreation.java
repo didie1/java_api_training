@@ -15,6 +15,7 @@ public class HttpServerCreation {
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         this.server.setExecutor(executorService);
         HttpContext context = server.createContext("/ping", new Ping());
+        HttpContext contextGame = server.createContext("/api/game/start", new Post(port));
     }
     public void startServer(){
         this.server.start();

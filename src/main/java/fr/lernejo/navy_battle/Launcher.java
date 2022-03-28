@@ -10,7 +10,7 @@ public class Launcher {
         if (args.length < 1) {
             throw new IllegalArgumentException("You have to give a port number to gain access");
         }
-        else if (args.length == 2) {
+        else if (args.length > 1) {
             HttpServerCreation newServer = new HttpServerCreation(Integer.parseInt(args[0]),args[1]);
             newServer.startServer();
             CreateClient client = new CreateClient(Integer.parseInt(args[0]));

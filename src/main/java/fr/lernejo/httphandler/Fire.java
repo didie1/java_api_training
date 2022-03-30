@@ -13,7 +13,6 @@ public class Fire implements HttpHandler {
     public Fire(int port,String cell) {
         this.port = port;
         this.cell = cell;
-
     }
 
     @Override

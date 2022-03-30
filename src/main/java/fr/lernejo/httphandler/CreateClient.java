@@ -7,7 +7,14 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class CreateClient {
+    private final HttpClient client;
+    public final int port;
 
+    public CreateClient(int port){
+        this.client = HttpClient.newHttpClient();
+        this.port = port;
+
+    }
     public void requestPost(String url) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(url + "/api/game/start"))
@@ -17,9 +24,8 @@ public class CreateClient {
             .build();
 
         HttpClient client = HttpClient.newHttpClient();
-        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
+        this.client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(r -> System.out.println("Reply: " +
+            r.statusCode() + " : " + r.body()));
     }
 
 }

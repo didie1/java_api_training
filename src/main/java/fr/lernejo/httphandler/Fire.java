@@ -20,7 +20,6 @@ public class Fire implements HttpHandler {
     public void handle(HttpExchange httpExchange) throws IOException {
         if (!httpExchange.getRequestMethod().equals("GET")) {
             httpExchange.sendResponseHeaders(HttpURLConnection.HTTP_NOT_FOUND, 0);
-            return;
         }
         else{
             httpExchange.getResponseHeaders().set("Content-type", "application/json");

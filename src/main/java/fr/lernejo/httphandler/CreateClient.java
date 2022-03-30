@@ -27,5 +27,16 @@ public class CreateClient {
         this.client.sendAsync(request, HttpResponse.BodyHandlers.ofString()).thenAccept(r -> System.out.println("Reply: " +
             r.statusCode() + " : " + r.body()));
     }
-
+    public void shootShip(String adversaryUrl, String cell) {
+        //sending a request to the server to shoot a ship on the specific cell
+        String requestUrl = adversaryUrl + "/api/game/fire?cell=" + cell;
+        HttpRequest getRequest = HttpRequest.newBuilder().uri(URI.create(requestUrl))
+            .setHeader("Accept", "application/json")
+            .setHeader("Content-Type", "application/json").GET().build();
+        try {
+            HttpResponse<String> response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
